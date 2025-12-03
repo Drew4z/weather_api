@@ -1,6 +1,9 @@
 package com.weather_api.weather.infrastructure.response;
 
 
-public class WeatherApiResponse {
-
-}
+public record WeatherApiResponse(
+        String city,
+        Double temperature,
+        String description,
+        String iconUrl
+){}

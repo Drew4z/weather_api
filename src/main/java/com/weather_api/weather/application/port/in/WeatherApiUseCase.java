@@ -1,7 +1,8 @@
 package com.weather_api.weather.application.port.in;
 
-import com.weather_api.weather.infrastructure.response.WeatherApiResponse;
+import com.weather_api.weather.infrastructure.response.GeolocationResponse;
 
 public interface WeatherApiUseCase {
-    WeatherApiResponse execute(String city);
+    GeolocationResponse execute(String city);
+
 }

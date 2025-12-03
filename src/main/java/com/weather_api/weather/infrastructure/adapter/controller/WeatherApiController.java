@@ -1,7 +1,7 @@
 package com.weather_api.weather.infrastructure.adapter.controller;
 
 import com.weather_api.weather.application.port.in.WeatherApiUseCase;
-import com.weather_api.weather.infrastructure.response.WeatherApiResponse;
+import com.weather_api.weather.infrastructure.response.GeolocationResponse;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ public class WeatherApiController {
         this.weatherApiUseCase = weatherApiUseCase;
     }
 
-    @GetMapping("api/v2/weather?city={city}")
-    public ResponseEntity<WeatherApiResponse> getWeather(@PathVariable String city){
+    @GetMapping("api/v1/weather?city={city}")
+    public ResponseEntity<GeolocationResponse> getWeather(@PathVariable String city){
         try{
-            WeatherApiResponse response = weatherApiUseCase.execute(city);
+            GeolocationResponse response = weatherApiUseCase.execute(city);
             return ResponseEntity.status(HttpStatusCode.valueOf(200))
                 .body(response);
         }catch (Exception e){
@@ -26,6 +26,9 @@ public class WeatherApiController {
                 .body(null);
         }
     }
+
+//    @GetMapping("api/v1/weather?lat={lat}?lon={lon}")
+//    public ResponseEntity<>
 
 }
 

@@ -2,7 +2,7 @@ package com.weather_api.weather.application.impl;
 
 import com.weather_api.weather.application.port.in.WeatherApiUseCase;
 import com.weather_api.weather.domain.service.WeatherApiService;
-import com.weather_api.weather.infrastructure.response.WeatherApiResponse;
+import com.weather_api.weather.infrastructure.response.GeolocationResponse;
 
 public class WeatherApiImpl implements WeatherApiUseCase {
     private final WeatherApiService weatherApiService;
@@ -12,7 +12,7 @@ public class WeatherApiImpl implements WeatherApiUseCase {
     }
 
     @Override
-    public WeatherApiResponse execute(String city){
+    public GeolocationResponse execute(String city){
         return weatherApiService.execute(city);
     }
 

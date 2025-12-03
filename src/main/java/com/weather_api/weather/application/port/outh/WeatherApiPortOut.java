@@ -1,9 +1,8 @@
 package com.weather_api.weather.application.port.outh;
 
 import com.weather_api.weather.infrastructure.DTO.OpenWeatherDTOs;
-import com.weather_api.weather.infrastructure.response.WeatherApiResponse;
+import com.weather_api.weather.infrastructure.response.GeolocationResponse;
 
 public interface WeatherApiPortOut {
-    OpenWeatherDTOs.GeoResponse getCoordinates(String city);
-    WeatherApiResponse getWeather(double lat, double lon);
+   GeolocationResponse getCoordinates(String city);
 }

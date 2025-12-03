@@ -1,7 +1,7 @@
 package com.weather_api.weather.domain.service;
 
 import com.weather_api.weather.application.port.outh.WeatherApiPortOut;
-import com.weather_api.weather.infrastructure.response.WeatherApiResponse;
+import com.weather_api.weather.infrastructure.response.GeolocationResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,9 +13,10 @@ public class WeatherApiService {
         this.weatherApiPortOut = weatherApiPortOut;
     }
 
-    public WeatherApiResponse execute(String city){
+    public GeolocationResponse execute(String city){
+
         Geolocation geo = weatherApiPortOut.getCoordenates(city);
-        WeatherApiResponse weatherApiDTO = weatherApiPortOut.getWeather(geo.getLat(),geo.getLon());
+        GeolocationResponse weatherApiDTO = weatherApiPortOut.getWeather(geo.getLat(),geo.getLon());
 
         return weatherApiDTO;
     }

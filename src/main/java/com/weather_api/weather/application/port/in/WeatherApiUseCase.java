@@ -1,8 +1,7 @@
 package com.weather_api.weather.application.port.in;
 
-import com.weather_api.weather.infrastructure.response.GeolocationResponse;
+import com.weather_api.weather.domain.model.Coordinates;
 
 public interface WeatherApiUseCase {
-    GeolocationResponse execute(String city);
-
+    Coordinates execute(String city);
 }

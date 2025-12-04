@@ -9,3 +9,5 @@ public record GeoapifyResponseDTO(List<Result> results) {
         @JsonIgnoreProperties(ignoreUnknown = true)
         public record Result(Double lon, Double lat) {}
 }
+
+

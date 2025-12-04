@@ -1,14 +1,17 @@
 package com.weather_api.weather.infrastructure.mapper;
 
 import com.weather_api.weather.domain.model.Coordinates;
+import com.weather_api.weather.domain.model.Weather;
 import com.weather_api.weather.infrastructure.DTO.GeoapifyResponseDTO;
+import com.weather_api.weather.infrastructure.DTO.OpenWeatherResponseDTO;
 import com.weather_api.weather.infrastructure.response.GeoapifyResponse;
+import com.weather_api.weather.infrastructure.response.WeatherResponse;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Mapper {
 
-    public GeoapifyResponse DomainToResponse(Coordinates coordinates) {
+    public GeoapifyResponse GeoDomainToResponse(Coordinates coordinates) {
         GeoapifyResponse response = new GeoapifyResponse(
                 coordinates.lon(),
                 coordinates.lat());
@@ -23,5 +26,27 @@ public class Mapper {
         return new Coordinates(
                 result.lat(),
                 result.lon());
+    }
+
+    public WeatherResponse WthDomainToResponse(Weather weather) {
+        WeatherResponse response = new WeatherResponse(
+                weather.city(),
+                weather.temperature(),
+                weather.description(),
+                weather.iconUrl()
+            );
+        return response;
+    }
+    public Weather OpenWeatherToDomain(OpenWeatherResponseDTO response) {
+        if (response == null) {
+            throw new RuntimeException("No weather found for the given lon and lat");
+        }
+        return new Weather(
+                response.city(),
+                response.temperature(),
+                response.description(),
+                response.iconUrl()
+            );
+
     }
 }

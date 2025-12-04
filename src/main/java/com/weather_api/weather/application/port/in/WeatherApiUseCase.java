@@ -6,5 +6,5 @@ import com.weather_api.weather.domain.model.Weather;
 public interface WeatherApiUseCase {
     Coordinates execute(String city);
 
-    Weather execute(Double lon, Double lat);
+    Weather execute(Coordinates coordinates);
 }

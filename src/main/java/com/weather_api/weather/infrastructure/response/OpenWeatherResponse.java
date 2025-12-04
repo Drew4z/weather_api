@@ -1,6 +1,6 @@
 package com.weather_api.weather.infrastructure.response;
 
-public record WeatherResponse(
+public record OpenWeatherResponse(
         String city,
         Double temperature,
         String description,

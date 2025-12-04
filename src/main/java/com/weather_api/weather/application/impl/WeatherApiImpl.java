@@ -24,7 +24,7 @@ public class WeatherApiImpl implements WeatherApiUseCase {
     }
 
     @Override
-    public Weather execute(Double lon, Double lat){
-        return openWeatherService.execute(lon,lat);
+    public Weather execute(Coordinates coordinates) {
+        return openWeatherService.execute(coordinates);
     }
 }

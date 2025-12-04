@@ -4,8 +4,9 @@ import com.weather_api.weather.domain.model.Coordinates;
 import com.weather_api.weather.domain.model.Weather;
 import com.weather_api.weather.infrastructure.DTO.GeoapifyResponseDTO;
 import com.weather_api.weather.infrastructure.DTO.OpenWeatherResponseDTO;
+import com.weather_api.weather.infrastructure.request.OpenWeatherRequest;
 import com.weather_api.weather.infrastructure.response.GeoapifyResponse;
-import com.weather_api.weather.infrastructure.response.WeatherResponse;
+import com.weather_api.weather.infrastructure.response.OpenWeatherResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,29 +25,35 @@ public class Mapper {
         }
         var result = response.results().get(0);
         return new Coordinates(
-                result.lat(),
-                result.lon());
+                result.lon(),
+                result.lat());
     }
 
-    public WeatherResponse WthDomainToResponse(Weather weather) {
-        WeatherResponse response = new WeatherResponse(
+    public OpenWeatherResponse WeatherDomainToResponse(Weather weather) {
+        OpenWeatherResponse response = new OpenWeatherResponse(
                 weather.city(),
                 weather.temperature(),
                 weather.description(),
-                weather.iconUrl()
-            );
+                weather.iconUrl());
         return response;
     }
+
     public Weather OpenWeatherToDomain(OpenWeatherResponseDTO response) {
         if (response == null) {
             throw new RuntimeException("No weather found for the given lon and lat");
         }
         return new Weather(
-                response.city(),
-                response.temperature(),
-                response.description(),
-                response.iconUrl()
-            );
+                response.name(),
+                response.main().temp(),
+                response.weather().get(0).description(),
+                response.weather().get(0).icon());
 
+    }
+
+    public Coordinates WeatherRequestToDomain(OpenWeatherRequest request) {
+        return new Coordinates(
+                request.lon(),
+                request.lat()
+        );
     }
 }

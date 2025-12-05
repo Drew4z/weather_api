@@ -28,7 +28,7 @@ public class WeatherApiController {
             Coordinates coordinates = weatherApiUseCase.execute(city);
 
             GeoapifyResponse response = mapper.GeoDomainToResponse(coordinates);
-            return ResponseEntity.status(HttpStatusCode.valueOf(200))
+            return ResponseEntity.ok()
                     .body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatusCode.valueOf(500))

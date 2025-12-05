@@ -1,6 +1,8 @@
 import { getCities, fetchCoordinates } from "./cities/cityService.js";
 import { fetchWeather } from "./weatherService.js";
 
+const URL_ICON = "https://openweathermap.org/img/wn/{iconValue}@2x.png";
+
 document.addEventListener("DOMContentLoaded", () => {
     const cities = getCities();
     const select = document.getElementById("city");
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (key === "iconUrl") {
                 // Si es la imagen, creamos una etiqueta img
                 const img = document.createElement("img");
-                img.src = value;
+                img.src = getIcon(value);
                 img.alt = "Weather icon";
                 li.appendChild(img);
             } else if (key === "temperature") {
@@ -59,5 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             container.appendChild(li);
         }
+    }
+
+    function getIcon(value){
+        const iconSrc = URL_ICON.replace("{iconValue}", value);
+
+        return iconSrc;
     }
 });

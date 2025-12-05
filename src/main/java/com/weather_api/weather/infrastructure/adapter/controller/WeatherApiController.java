@@ -37,9 +37,9 @@ public class WeatherApiController {
         }
     }
 
-     @GetMapping("api/v1/weather")
-     public ResponseEntity<OpenWeatherResponse> getWeather(@RequestParam Double lon, Double lat){
-        try{
+    @GetMapping("api/v1/weather")
+    public ResponseEntity<OpenWeatherResponse> getWeather(@RequestParam Double lon, @RequestParam Double lat) {
+        try {
             OpenWeatherRequest request = new OpenWeatherRequest(lon, lat);
             Coordinates coordinates = mapper.WeatherRequestToDomain(request);
 
@@ -51,6 +51,6 @@ public class WeatherApiController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-     }
+    }
 
 }
